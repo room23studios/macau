@@ -1,0 +1,5 @@
+<form action="/j/{{pin}}" method="post">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Play!</button>
+</form>
