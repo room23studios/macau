@@ -10,7 +10,6 @@ pylint-django = "*"
 
 [packages]
 django = "*"
-redis = "*"
 
 [requires]
 python_version = "3.7"
