@@ -10,6 +10,7 @@ pylint-django = "*"
 
 [packages]
 django = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.7"

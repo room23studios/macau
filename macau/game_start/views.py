@@ -6,6 +6,8 @@ from game_start.forms import NickForm, PinForm
 
 import secrets
 
+from . import jwt
+
 
 def index(request):
     return HttpResponse("Hello, world")
@@ -43,12 +45,14 @@ def join_game_by_url(request, game_pin):
     if not form.is_valid():
         return HttpResponse("Invalid form")  # TODO: http code, errors
 
-    token = {
+    payload = {
         "game_id": game.id,
         "nick": form.cleaned_data['nick']
     }
+    token = jwt.sign(payload)
+
     # TODO: sign the token with JWT and send it to the template
-    return render(request, 'game_start/game.html', context={})
+    return render(request, 'game_start/game.html', context={"token": token})
 
 
 def join_game_by_pin(request):
