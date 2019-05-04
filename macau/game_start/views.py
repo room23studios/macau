@@ -52,21 +52,14 @@ def join_game_by_url(request, game_pin):
 
 
 def join_game_by_pin(request):
-    if request.method == 'POST':
-        form = PinForm(request.POST)
-        if form.is_valid():
-            game_pin = form.cleaned_data['pin']
-            games = Game.objects.exclude(state="resolved").filter(pin=game_pin)
-            if not games:
-                return HttpResponse("No game with this pin")
-            elif not games.first().state == "lobby":
-                return HttpResponse("Game already started")
-            else:
-                return HttpResponseRedirect('j/' + str(game_pin))
-        else:
-            return HttpResponse("Form invalid")
-
-    else:
+    if request.method != 'POST':
         form = PinForm()
         context = {'form': form}
         return render(request, 'game_start/pin.html', context=context)
+
+    form = PinForm(request.POST)
+    if not form.is_valid():
+        return HttpResponse("Form invalid")  # TODO: http error code
+
+    game_pin = form.cleaned_data['pin']
+    return HttpResponseRedirect('j/' + str(game_pin))
