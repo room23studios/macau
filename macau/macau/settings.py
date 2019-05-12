@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'game_start'
 ]
 
 MIDDLEWARE = [
@@ -118,3 +119,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# TODO: store it somewhere secure, not in the repo
+JWT_SECRET = 'a878cee316d0089f86cdc79a528620710ea1ea1b70e9891b1723a1083e4b9cf862cfe674c2a5549f84a8e10e1d821edd3729af655a4c3569bb9a970bc5b2b31b'
