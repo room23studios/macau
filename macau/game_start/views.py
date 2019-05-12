@@ -46,7 +46,7 @@ def join_game_by_url(request, game_pin):
         return HttpResponse("Invalid form")  # TODO: http code, errors
 
     payload = {
-        "game_id": game.id,
+        "game_id": str(game.id),
         "nick": form.cleaned_data['nick']
     }
     token = jwt.sign(payload)
