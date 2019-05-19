@@ -47,7 +47,7 @@ def join_game_by_url(request, game_pin):
 
     payload = {
         "game_id": str(game.id),
-        "nick": form.cleaned_data['nick']
+        "nick": form.cleaned_data['nick'],
         "user_id": secrets.token_urlsafe()
     }
     token = jwt.sign(payload)
